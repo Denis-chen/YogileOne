@@ -41,7 +41,7 @@
 
 - 问题5：如何使用git
 - 问题4解决方案：git配置主要命令
-git config --global user.name "xxx"
+git config --global user.name "xxx"&nbsp；
 git config --global user.email "xxx"
 git init 
 git remote add origin https://gitee.com/xxx/xxx.git
