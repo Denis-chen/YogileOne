@@ -19,32 +19,34 @@ sudo update-alternatives --install /usr/bin/javac javac /xxx/.../xxx/jdk1.8.0_91
 ```
 
 - 问题2：仍无法使用javac(2):
-    - 问题2解决方案：输入
-    sudo su<Enter>
-    键入密码
+    - 问题2解决方案：输入`sudo su<Enter>`然后键入密码
 
 - 问题3：无法使用jdb(1):
-    程序'jdb'已包含在下列软件中:
+
+```
+程序'jdb'已包含在下列软件中:
     xxxxxx
-    请尝试: sudo apt install <选定的软件包>
+请尝试: sudo apt install <选定的软件包>
+```
     - 问题3解决方案：是jdk的环境配置未完成，输入：
-    gedit /etc/profile ##图形界面下可用gedit进行编辑
+    `gedit /etc/profile` ##图形界面下可用gedit进行编辑
     输入配置信息
     保存，再输入：
-    source /etc/profile
+    `source /etc/profile`
     使文件立即生效，重启虚拟机。
 
 - 问题4：仍无法使用jdb(2):
     如果完成上一步骤仍出现下列信息：
-    程序'jdb'已包含在下列软件中:
+```
+程序'jdb'已包含在下列软件中:
     xxxxxx
-    请尝试: sudo apt install <选定的软件包> 
+请尝试: sudo apt install <选定的软件包> 
+```
     - 问题4解决方案：
     退出root权限，再进行命令。
 
 - 问题5：如何使用git
-    - 问题4解决方案：git配置主要命令
-
+    - 问题5解决方案：git配置主要命令
 ```
 git config --global user.name "xxx"
 git config --global user.email "xxx"
@@ -61,9 +63,10 @@ git push origin master
 
 
 - 问题1：
-    helloqq.java:94: 错误: 已在方法 main(String[])中定义了变量 count
+```
+helloqq.java:94: 错误: 已在方法 main(String[])中定义了变量 count
 			for(int count=0, choicetwo = 0; count < namelist.length; count++)
-			        ^
+```			        ^
 - 问题1解决方案：删除int
 
 
@@ -81,7 +84,7 @@ git push origin master
 
     
 ## 其他（感悟、思考等，可选）
-JAVA的学习是进一步的，而非停留在阅读表面。学习JAVA开发真的有难度，精力的付出是学习好JAVA的基本，而耐心不只是学习JAVA，而且是学习所有东西的必要条件。但是我在学习的过程中，确确实实是沉迷其中，每解决一个遇到的问题，都有一种成就感
+JAVA的学习是进一步的，而非停留在阅读表面。学习JAVA开发真的有难度，精力的付出是学习好JAVA的基本，而耐心不只是学习JAVA，而且是学习所有东西的必要条件。但是我在学习的过程中，确确实实是沉迷其中，每解决一个遇到的问题，都有一种成就感。
 
 
 ## 学习进度条
