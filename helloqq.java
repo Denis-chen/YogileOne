@@ -66,17 +66,17 @@ public class helloqq
 			System.out.println("请输入你要查的姓氏:");
 			Scanner inputtwo = new Scanner(System.in);
 			String familyname = inputtwo.nextLine();
-			for(int count = 0, choicetwo = 0; count < namelist.length; count++)
+			for(int count1 = 0, choicetwo = 0; count1 < namelist.length; count1++)
 			{
-				if(namelist[count].startsWith(familyname))		//String常用方法三:public boolean startsWith(String s)
+				if(namelist[count1].startsWith(familyname))		//String常用方法三:public boolean startsWith(String s)
 				{
 					choicetwo = 1;
 				}
-				if((choicetwo == 1)&&(count == namelist.length-1))
+				if((choicetwo == 1)&&(count1 == namelist.length-1))
 				{
 					System.out.printf("有姓 %s 的人.\n", familyname);
 				}
-				else if((choicetwo == 0)&&(count == namelist.length-1))
+				else if((choicetwo == 0)&&(count1 == namelist.length-1))
 				{
 					System.out.printf("没有姓 %s 的人.\n", familyname);
 				}
@@ -91,17 +91,17 @@ public class helloqq
 			System.out.println("请输入你要查的名字结尾:");
 			Scanner inputtwo = new Scanner(System.in);
 			String familyname = inputtwo.nextLine();
-			for(int count=0, choicetwo = 0; count < namelist.length; count++)
+			for(int count2=0, choicetwo = 0; count2 < namelist.length; count2++)
 			{	
-				if(namelist[count].endsWith(familyname))		//String常用方法三:public boolean endsWith(String s)
+				if(namelist[count2].endsWith(familyname))		//String常用方法三:public boolean endsWith(String s)
 				{
 					choicetwo = 1;
 				}
-				if((choicetwo == 1)&&(count == namelist.length-1))
+				if((choicetwo == 1)&&(count2 == namelist.length-1))
 				{
 					System.out.printf("有名字结尾为 %s 的人.\n", familyname);
 				}
-				else if((choicetwo == 0)&&(count == namelist.length-1))
+				else if((choicetwo == 0)&&(count2 == namelist.length-1))
 				{
 					System.out.printf("没有名字结尾为 %s 的人.\n", familyname);
 				}
