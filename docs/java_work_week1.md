@@ -20,24 +20,36 @@
     sudo su<Enter>
     键入密码
 
-- 问题2：无法使用jdb(1):
+- 问题3：无法使用jdb(1):
     程序'jdb'已包含在下列软件中:
     xxxxxx
     请尝试: sudo apt install <选定的软件包>
-- 问题2解决方案：是jdk的环境配置未完成，输入：
+- 问题3解决方案：是jdk的环境配置未完成，输入：
     gedit /etc/profile ##图形界面下可用gedit进行编辑
     输入配置信息
     保存，再输入：
     source /etc/profile
     使文件立即生效，重启虚拟机。
 
-- 问题2：仍无法使用jdb(2):
+- 问题4：仍无法使用jdb(2):
     如果完成上一步骤仍出现下列信息：
     程序'jdb'已包含在下列软件中:
     xxxxxx
     请尝试: sudo apt install <选定的软件包> 
-- 问题2解决方案：
+- 问题4解决方案：
     退出root权限，再进行命令。
+
+- 问题5：如何使用git
+- 问题4解决方案：git配置主要命令
+git config --global user.name "xxx"
+git config --global user.email "xxx"
+git init 
+git remote add origin https://gitee.com/xxx/xxx.git
+git add .
+git commit -m "xxx" xxx.xxx
+git pull origin master    ##无法解决则键入：git pull --rebase origin master
+git push origin master
+
 
 ## 代码调试中的问题和解决过程
 
