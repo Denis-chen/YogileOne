@@ -12,6 +12,7 @@ public class hello
 			sum += i;
 		System.out.println("result\n");	
 		System.out.println(sum);
+		System.out.println("Hello 20175223 Yogile!");
 	}
 
 	public static int add(int augend, int addend)
