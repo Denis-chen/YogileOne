@@ -4,8 +4,6 @@
 
 ## 教材学习中的问题和解决过程
 
-教材学习有问题先去[https://shimo.im/doc/1i1gldfsojIFH8Ip/](https://shimo.im/doc/1i1gldfsojIFH8Ip/)看看，如果别人没有提出相同问题，可以编辑文档添加，然后把自己提出的问题复制到下面：
-
 - 问题1：无法使用javac(1):
 - 问题1解决方案：输入
     sudo update-alternatives --install /usr/bin/java java /usr/local/java/jdk1.8.0_91/bin/java 300
@@ -37,7 +35,6 @@
 
 ## 代码调试中的问题和解决过程
 
-教材中代码调试有问题先去[https://shimo.im/doc/1i1gldfsojIFH8Ip/](https://shimo.im/doc/1i1gldfsojIFH8Ip/)看看，如果别人没有提出相同问题，可以编辑文档添加，然后把自己提出的问题复制到下面：
 
 - 问题1：XXXXXX
 - 问题1解决方案：XXXXXX
@@ -47,9 +44,12 @@
 
 ## [代码托管](码云学习项目链接)
 
-（statistics.sh脚本的运行结果截图）
+![image.png](https://images.gitee.com/uploads/images/2019/0303/193455_053c15a7_4815672.png)
+
 
 ## 上周考试错题总结
+上周无考试
+
 - 错题1及原因，理解情况
 - 错题2及原因，理解情况
 - ... 
