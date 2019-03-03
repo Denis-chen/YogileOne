@@ -11,7 +11,12 @@
 ## 教材学习中的问题和解决过程
 
 - 问题1：无法使用javac(1):
-    - 问题1解决方案：输入
+```
+程序'javac'已包含在下列软件中:
+    xxxxxx
+请尝试: sudo apt install <选定的软件包>
+```
+- 问题1解决方案：输入
 
 ```
 sudo update-alternatives --install /usr/bin/java java /xxx/.../xxx/jdk1.8.0_91/bin/java 300
@@ -19,16 +24,21 @@ sudo update-alternatives --install /usr/bin/javac javac /xxx/.../xxx/jdk1.8.0_91
 ```
 
 - 问题2：仍无法使用javac(2):
-    - 问题2解决方案：输入`sudo su<Enter>`然后键入密码
+```
+程序'javac'已包含在下列软件中:
+    xxxxxx
+请尝试: sudo apt install <选定的软件包>
+```
+- 问题2解决方案：输入`sudo su<Enter>`然后键入密码
 
 - 问题3：无法使用jdb(1):
-
 ```
 程序'jdb'已包含在下列软件中:
     xxxxxx
 请尝试: sudo apt install <选定的软件包>
 ```
-    - 问题3解决方案：是jdk的环境配置未完成，输入：
+
+- 问题3解决方案：是jdk的环境配置未完成，输入：
     `gedit /etc/profile` ##图形界面下可用gedit进行编辑
     输入配置信息
     保存，再输入：
@@ -42,11 +52,11 @@ sudo update-alternatives --install /usr/bin/javac javac /xxx/.../xxx/jdk1.8.0_91
     xxxxxx
 请尝试: sudo apt install <选定的软件包> 
 ```
-    - 问题4解决方案：
+- 问题4解决方案：
     退出root权限，再进行命令。
 
 - 问题5：如何使用git
-    - 问题5解决方案：git配置主要命令
+    - 问题5解决方案：git配置主要命令如下：
 ```
 git config --global user.name "xxx"
 git config --global user.email "xxx"
@@ -66,9 +76,17 @@ git push origin master
 ```
 helloqq.java:94: 错误: 已在方法 main(String[])中定义了变量 count
 			for(int count=0, choicetwo = 0; count < namelist.length; count++)
-```			        ^
+			        ^
+```
 - 问题1解决方案：删除int
 
+- 问题2：
+```
+helloqq.java:75: 错误: 找不到符号
+				if((choicetwo == 1)&&(count == namelist.length-1))
+				    ^
+```
+- 问题2解决方案：主main后在choicetwo前加int
 
 ## [代码托管]
 - 代码提交过程截图：
