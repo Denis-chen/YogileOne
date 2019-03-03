@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class stringxx
+public class helloqq
 {
 	public static void main (String args[]) 
 	{
@@ -66,7 +66,7 @@ public class stringxx
 			System.out.println("请输入你要查的姓氏:");
 			Scanner inputtwo = new Scanner(System.in);
 			String familyname = inputtwo.nextLine();
-			for(int count=0, choicetwo = 0; count < namelist.length; count++)
+			for(int count = 0, choicetwo = 0; count < namelist.length; count++)
 			{
 				if(namelist[count].startsWith(familyname))		//String常用方法三:public boolean startsWith(String s)
 				{
@@ -170,7 +170,7 @@ public class stringxx
 					}
 				}
 				*/
-				for(int count = 0; count < namelist.length; count++)
+				for(count = 0; count < namelist.length; count++)
 				{	
 					System.out.println((count+1)+"."+namelist[count]);
 				}
@@ -178,16 +178,16 @@ public class stringxx
 			else if(inputthree == 2)
 			{
 				System.out.println("\n以编号由小到大列表:");
-				for(int count = 0; count < namelist.length; count++)
+				for(count = 0; count < namelist.length; count++)
 				{
 					System.out.println((count+1)+"."+namelist[count]);
 				}
 			}
-			else
+			/*else
 			{
 				;
-			}
-			//System.out.println("");
+			}*/
+			
 		}
 		else if(choiceone == 5)
 		{
@@ -287,14 +287,4 @@ public class stringxx
 	}
 
 }
-
-
-
-/*
-int scan(int x)
-{
-	Scanner in = new Scanner(System.in);
-	System.out.println("");
 }
-
-*/
