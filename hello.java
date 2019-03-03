@@ -10,7 +10,7 @@ public class hello
 		sum = 0;
 		for(i=0; i<100;i++)
 			sum += i;
-			
+		System.out.println("result\n");	
 		System.out.println(sum);
 	}
 
