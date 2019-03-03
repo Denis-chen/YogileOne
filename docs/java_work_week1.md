@@ -127,3 +127,7 @@ JAVA的学习是进一步的，而非停留在阅读表面。学习JAVA开发真
 -  [Java学习笔记(第8版)](http://book.douban.com/subject/26371167/) 
 
 -  [《Java学习笔记(第8版)》学习指导](http://www.cnblogs.com/rocedu/p/5182332.html)
+
+-  [ubuntu安装和使用git总结](https://blog.csdn.net/m0_37950361/article/details/80138929)
+
+-  [ubuntu16.04搭建jdk1.8运行环境](https://blog.csdn.net/smile_from_2015/article/details/80056297)
