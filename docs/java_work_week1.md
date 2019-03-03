@@ -51,7 +51,8 @@
 
 ## [代码托管]
 - 代码提交过程截图：
-![image.png](https://images.gitee.com/uploads/images/2019/0303/200358_6654c9a8_4815672.png)
+![image.png](https://images.gitee.com/uploads/images/2019/0303/212145_2618d163_4815672.png)
+![image.png](https://images.gitee.com/uploads/images/2019/0303/212220_adcb7a28_4815672.png)
 
 - 代码量截图：
 ![image.png](https://images.gitee.com/uploads/images/2019/0303/202733_fdb969ff_4815672.png)
