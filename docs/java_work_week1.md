@@ -41,7 +41,9 @@
 
 - 问题5：如何使用git
 - 问题4解决方案：git配置主要命令
-git config --global user.name "xxx"&nbsp；
+
+```
+git config --global user.name "xxx"
 git config --global user.email "xxx"
 git init 
 git remote add origin https://gitee.com/xxx/xxx.git
@@ -49,6 +51,7 @@ git add .
 git commit -m "xxx" xxx.xxx
 git pull origin master    ##无法解决则键入：git pull --rebase origin master
 git push origin master
+```
 
 
 ## 代码调试中的问题和解决过程
