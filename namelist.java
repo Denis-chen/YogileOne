@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class helloqq
+public class namelist
 {
 	public static void main (String args[]) 
 	{
