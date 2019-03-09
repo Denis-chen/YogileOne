@@ -7,9 +7,16 @@ echo "documents summary infomation:"
 find . -name "*.md" -mtime 0 | xargs cat | grep -v ^$ | wc -l 
 echo ""
 
+echo "//==========This week of IDEA:========================"
+echo "code summary infomation:"
+cd IdeaProgram/
+find . -name "*.java" -mtime -7 | xargs cat | grep -v ^$ | wc -l 
+cd ..
+echo ""
+
 echo "//==========This Week================================="
 echo "code summary infomation:"
-find . -name "*.java" -mtime -7| xargs cat | grep -v ^$ | wc -l 
+find . -name "*.java" -mtime -7 | xargs cat | grep -v ^$ | wc -l 
 echo "documents summary infomation:"
 find . -name "*.md" -mtime -7| xargs cat | grep -v ^$ | wc -l 
 git log --pretty=format:"%h - %an,%ci: %s " | grep  `date +%F --date="-0 days"`
@@ -29,3 +36,4 @@ echo "documents summary infomation:"
 find . -name "*.md"| xargs cat | grep -v ^$ | wc -l 
 echo "commit history:"
 git log --pretty=format:"%h - %an,%ci: %s "
+
