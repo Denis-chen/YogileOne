@@ -1,37 +1,32 @@
-public class factorial
+public class factorial      //实现阶乘运算
 {
-    double supnum = 1;
-    void mult(double num)
+    int supnum = 1, choice = 0;
+    void mult(int num)
     {
-        int max = 1;
+        int innum=1, inchoice=0, max=0;
         if (num > 1)
         {
-            for (int i = 1; i <= num; i++)
+            for (int i=1; i<=num; i++, max++)
             {
-                if (max <= 12)
-                {
-                    supnum = supnum * i;
-                    max++;
-                }
-                else if (max > 12)
-                {
-                    System.out.println("The count of supnum passes the capacity of 'int' !");
-                }
+                innum = innum * i;
+            }
+            if (max > 12)
+            {
+                //System.out.println("The count of supnum passes the capacity of 'int' !");
+                inchoice = 1;
             }
         }
         else if (num == 1 || num ==0)
         {
-            supnum = 1;
-        }
-        else if (num<0)
-        {
-            //System.out.println("Error!");
-            supnum = 0;
+            innum = 1;
         }
         else
         {
-            System.out.println("0000000000");
+            innum = 0;
         }
+        supnum = innum;
+        choice = inchoice;
+
     }
 }
 /*
