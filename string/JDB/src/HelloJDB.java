@@ -1,7 +1,7 @@
 public class HelloJDB{
     public static void main(String[] args) {
         int numone=9, numtwo=10;
-        HE tet = new HE();      //为tet分配空间
+        HE tet = new HE();        //为tet分配空间
         tet.mult(numone);       //实现9!并输出
         System.out.println(numone+"!的值supnum="+tet.supnum);
         tet.mult(numtwo);       //实现10!并输出
