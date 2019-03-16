@@ -48,6 +48,7 @@ root@yogile-VirtualBox:/alive/string# java -cp string name
 错误: 找不到或无法加载主类 name
 ```
 - 问题3解决方案：两种情况均是解释文件的格式不对。解释器java.exe解释的并不是源文件本身，而是编译后的文件xxx.class。由于`javac -d bin string/name.java`将编译name.java生成的name.class字节码文件生成到bin文件夹中，所以应该用`java -cd bin name`运行。
+如果程序中含有package，需要在package定义的上一个目录中进行编译。
 
 ### 4. 无法使用`sudo apt-get update`，fghdf.
 ```
@@ -58,19 +59,15 @@ E: 无法对目录 /var/lib/apt/lists/ 加锁
 ```
 - 问题4解决方案：
 
-方案一：输入
+Ⅰ：输入`sudo dpkg --configure -a`。
+Ⅱ：输入
 ```
 sudo rm /var/lib/apt/lists/lock
 sudo rm /var/cache/apt/archives/lock
 ```
-方案二：
+Ⅱ：在大部分情况下，问题的原因在于其它的程序如系统的自动更新、新立得等正在使用apt-get进程。
+执行`ps-aux`来查找apt-get进程的PID，找到含有但凡有apt字样的进程，都通过`sudo kill <PID>`结束进程。
 
-
-### 5. 
-```
-
-```
-- 问题5解决方案：
 
 ## 代码调试中的问题和解决过程
 
@@ -86,36 +83,22 @@ string/Example2_1.java:148: 错误: 需要class, interface或enum
 ```
 - 问题1解决方案：这些部分代码是我从其它地方复制过来的，有些不可见字符也被复制了。这是Windows中日文等的编码格式与Unicode的冲突。不可直接编译，需重新在Linux系统中键入文字。
 
-### 2.
-```
-root@yogile-VirtualBox:/alive/string# javac work/Circular.java
-work/Circular.java:3: 错误: 找不到符号
-    Circle bottom;
-    ^
-  符号:   类 Circle
-  位置: 类 Circular
-```
+### 2.无法对含有多个.java（.class）文档的程序进行编译（或解释）
 - 问题2解决方案：
-
-### 3.
-```
-
-```
-- 问题1解决方案：
+[如何编译含有多个类的.java程序](https://www.cnblogs.com/Yogile/p/10490088.html)
 
 ## [代码托管]
 - 代码提交过程截图：
-
+![](https://images.gitee.com/uploads/images/2019/0316/172028_62d17bad_4815672.png)
 
 - 代码量截图：
+![](https://images.gitee.com/uploads/images/2019/0316/172028_d2d32856_4815672.png)
+![](https://images.gitee.com/uploads/images/2019/0316/172028_d62db1ad_4815672.png)
 
 
 
 ## 上周考试错题总结
 上周考试无错题。
-
-    
-## 其他（感悟、思考等，可选）
 
 ## 学习进度条
 
@@ -123,23 +106,19 @@ work/Circular.java:3: 错误: 找不到符号
 | --------   | :----------------:|:----------------:|:---------------:  |:-----:|
 | 目标        | 5000行            |   30篇           | 400小时            |       |
 | 第一周      | 322/322           |   1/1            | 23/23               |       |
-| 第一周      | 0/390           |   1/2            | 8/23               |       |
+| 第二周      | 520/842           |   3/4            | 25/48               |       |
 
 
 
 - 计划学习时间:23小时
 
-- 实际学习时间:8小时
+- 实际学习时间:25小时
 
 - 改进情况：
-相较于寒假，我更深入了解学习了Linux，git和JAVA，收获良多。
+学习了使用IDEA编译运行程序，学完了第四章类与对象。
 
 
 ## 参考资料
-
--  [Java学习笔记(第8版)](http://book.douban.com/subject/26371167/) 
-
--  [《Java学习笔记(第8版)》学习指导](http://www.cnblogs.com/rocedu/p/5182332.html)
 
 -  [GIT更新远程仓库代码到本地仓库以及GIThub上SHH的设定](https://blog.csdn.net/weixin_41884599/article/details/82317566)
 
