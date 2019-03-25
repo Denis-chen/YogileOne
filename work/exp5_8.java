@@ -13,7 +13,6 @@ class Student {
       this.name=name;
 
       System.out.println("我的名字是:"+name+ "学号是:"+number);
-
    }
 
  }
@@ -24,7 +23,7 @@ class UniverStudent extends Student {
 
    UniverStudent(int number,String name,boolean b) {
 
-//      super(number,name);
+      super(number,name);
 
       婚否=b;
 
@@ -38,8 +37,9 @@ public class exp5_8 {
 
    public static void main(String args[]) {
 
-      UniverStudent zhang=new UniverStudent(9901,"何晓林",false);
+      UniverStudent ymy = new UniverStudent(20175223,"姚明宇",false);
 
+      UniverStudent lys = new UniverStudent(20175222,"罗雨石",false);
    }
 
 }
