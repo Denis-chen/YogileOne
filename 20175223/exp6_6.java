@@ -7,7 +7,9 @@ public class exp6_6 {
       board.show(new BlackLandCorp());
 
       board.show(new WhiteCloudCorp());
-
+	System.out.println("ymy的广告词如下:");     
+ 
+	System.out.println("**************\n"+"Day day up!\n"+"**************");
    }
 
 }
