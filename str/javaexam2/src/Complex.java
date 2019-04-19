@@ -46,22 +46,22 @@ public class Complex {
         return this.RealPart+"+ "+this.ImagePart+"i";
     }
 
-    void complexAdd(Complex comOne, Complex comTwo) {
+    public void complexAdd(Complex comOne, Complex comTwo) {
         this.RealPart = comOne.RealPart+comTwo.RealPart;
         this.ImagePart = comOne.ImagePart+comTwo.ImagePart;
     }
 
-    void complexSub(Complex comOne, Complex comTwo) {
+    public void complexSub(Complex comOne, Complex comTwo) {
         this.RealPart = comOne.RealPart-comTwo.RealPart;
         this.ImagePart = comOne.ImagePart-comTwo.ImagePart;
     }
 
-    void complexMulti(Complex comOne, Complex comTwo){
+    public void complexMulti(Complex comOne, Complex comTwo){
         this.RealPart = comOne.RealPart*comTwo.RealPart - comOne.ImagePart*comTwo.ImagePart;
         this.ImagePart = comOne.ImagePart*comTwo.RealPart + comOne.RealPart*comTwo.ImagePart;
     }
 
-    void complexDiv(Complex comOne, Complex comTwo) {
+    public void complexDiv(Complex comOne, Complex comTwo) {
         this.RealPart = (comOne.RealPart*comTwo.RealPart+comOne.ImagePart*comTwo.ImagePart)/(comTwo.RealPart*comTwo.RealPart+comTwo.ImagePart*comTwo.ImagePart);
         this.ImagePart = (comOne.ImagePart*comTwo.RealPart-comOne.RealPart*comTwo.ImagePart)/(comTwo.RealPart*comTwo.RealPart+comTwo.ImagePart*comTwo.ImagePart);
     }

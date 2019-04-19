@@ -19,7 +19,7 @@ public class ComplexTest extends TestCase {
         assertEquals(50.0,test3.getImagePart());
     }
     @Test
-    public void TestcomplexAdd() throws Exception {
+    public void testcomplexAdd() throws Exception {
         test0.complexAdd(test1,test2);
         assertEquals("11.0+ 11.0i",test0.toString());
         test0.complexAdd(test3,test4);
