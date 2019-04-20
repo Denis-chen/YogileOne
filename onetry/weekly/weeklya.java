@@ -1,4 +1,4 @@
-public class weekly {
+public class weeklya {
     public static void main(String args[]){
         //定义一个数组，比如
         int arr[] = {1,2,3,4,5,6,7,8};
