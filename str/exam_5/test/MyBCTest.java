@@ -5,12 +5,12 @@ public class MyBCTest {
         MyBC mybc = new MyBC ();
         MyDC mydc = new MyDC ();
         String inExpression;
-        String str2;
+        String str;
         Scanner reader = new Scanner (System.in);
-        System.out.println ("IEnter a expression: ");
+        System.out.println ("Enter a expression: ");
         inExpression = reader.nextLine ();
-        str2 = mybc.toSuffix (inExpression);
-        System.out.println ("str2: " +str2);
-        System.out.println ("result: " +mydc.evaluate(str2));
+        str = mybc.toSuffix (inExpression);
+        System.out.println ("Exchange the expression by MyBC: " +str);
+        System.out.println ("The calculation result of MyDC: " +mydc.evaluate(str));
     }
 }
