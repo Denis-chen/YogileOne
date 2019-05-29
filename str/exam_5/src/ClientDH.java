@@ -4,48 +4,64 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Map;
-
+import java.util.Scanner;
+//((100-20)/(4+6))/(2*2)
 public class ClientDH {
     public static void main(String args[]) {
-        //Scanner reader = new Scanner (System.in);
+        String cipherText, plainText, answer;
+        Scanner reader = new Scanner (System.in);
         System.out.println ("客户输入一个中缀表达式: ");
-        //String str = reader.nextLine ();
-        String str = "1+2";
+        String str = reader.nextLine ();
         Socket mysocket;
         DataInputStream in = null;
         DataOutputStream out = null;
-        String tempKey1;
         try {
             mysocket = new Socket ("127.0.0.1", 2010);
             in = new DataInputStream (mysocket.getInputStream ( ));
             out = new DataOutputStream (mysocket.getOutputStream ( ));
 
             //设立AES算法的32字符密钥，输入密文与密钥
-            String AES_key = "20175223yaomingyushidashuaibi111";
-            String miwen = AES.ecodes(str,AES_key);
-            //将密文发往客户端，out发送信息，111111111
-            System.out.println ("客户发往服务器的密文:\n" + miwen);
-            out.writeUTF (miwen);
+            String AES_Key = "20175223yaomingyushidashuaibi111";
+            //将中缀表达式变形为后缀表达式
+            plainText = MyBC.toSuffix (str);
+            System.out.println ("后缀表达式明文:\n" + plainText);
+
+            //将后缀表达式明文通过AES加密，并将后缀表达式密文发往客户端
+            cipherText = AES.ecodes (plainText, AES_Key);
+            System.out.println ("后缀表达式密文:\n" + cipherText + "\n");
+            //out发送信息
+            out.writeUTF (cipherText);
 
             //对AES算法的32字符密钥进行DH算法加密
             //生成甲方的密钥对
-            Map<String,Object> keyMap1=DH.initKey();
+            Map <String, Object> keyMap1 = DH.initKey ( );
             //甲方的公钥
-            byte[] publicKey1=DH.getPublicKey(keyMap1);
+            byte[] publicKey1 = DH.getPublicKey (keyMap1);
             //甲方的私钥
-            byte[] privateKey1=DH.getPrivateKey(keyMap1);
-            System.out.println("甲方公钥：/n"+Base64.encodeBase64String(publicKey1));
-            System.out.println("甲方私钥：/n"+Base64.encodeBase64String(privateKey1));
-            tempKey1= Base64.encodeBase64String(publicKey1);
-            //out发送信息，222222
-            out.writeUTF(tempKey1);
+            byte[] privateKey1 = DH.getPrivateKey (keyMap1);
+            System.out.println ("甲方公钥：/n" + Base64.encodeBase64String (publicKey1));
+            System.out.println ("甲方私钥：/n" + Base64.encodeBase64String (privateKey1));
+            String tempKey1 = Base64.encodeBase64String (publicKey1);
+            //out发送信息
+            out.writeUTF (tempKey1);
 
-            //in读取信息，堵塞状态，1111111
-            String temp = in.readUTF ( );
-            System.out.println ("客户收到服务器的后缀表达式:\n" + temp);
-            //in读取信息，堵塞状态，2222222
-            String answer = in.readUTF ( );
-            System.out.println ("客户收到服务器的计算结果:\n" + answer);
+            //组装甲方的本地加密密钥,由乙方的公钥和甲方的私钥组合而成
+            //in读取信息，堵塞状态
+            String tempKey2 = in.readUTF ( );
+            byte[] publicKey2 = Base64.decodeBase64 (tempKey2);
+            System.out.println ("乙方公钥：/n" + Base64.encodeBase64String (publicKey1));
+            byte[] key1 = DH.getSecretKey (publicKey2, privateKey1);
+            System.out.println ("甲方的本地密钥：/n" + Base64.encodeBase64String (key1));
+
+            //甲方使用本地密钥对AES_Key进行消息加密，并发给乙方
+            byte[] code1 = DH.encrypt (AES_Key.getBytes ( ), key1);
+            System.out.println ("甲方使用本地密钥对AES_Key进行加密后的数据：" + Base64.encodeBase64String (code1));
+            //out发送信息，333333
+            out.writeUTF (Base64.encodeBase64String (code1));
+
+            //接受乙方的计算结果
+            answer = in.readUTF ( );
+            System.out.println ("\n**计算由服务器进行**\n\n客户收到服务器的计算结果:\n" + answer);
             Thread.sleep (500);
         } catch (Exception e) {
             System.out.println ("服务器已断开" + e);
