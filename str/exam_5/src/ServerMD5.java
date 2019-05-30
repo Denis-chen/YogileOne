@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Map;
-
-public class ServerDH {
+public class ServerMD5 {
     public static void main(String args[]) {
         String cipherText, plainText, answer;
         MyDC mydc = new MyDC ( );
@@ -59,8 +58,16 @@ public class ServerDH {
 
             //使用解密后的AES_Key对后缀表达式密文解密，并算出结果
             plainText = AES.dcodes (cipherText, AES_Key);
-            System.out.println ("\nAES_Key对后缀表达式密文解密:\n" + plainText);
+            System.out.println ("\nAES_Key对后缀表达式密文解密:" + plainText);
             answer = String.valueOf (mydc.evaluate (plainText));
+
+            //接受客户端的MD5值，计算解密后后缀表达式的MD5值，并判断是否相同，不同则停止
+            String clicetValueMD5 = in.readUTF ();
+            String valueMD5 = MD5.numberMD5 (plainText);
+            if (!clicetValueMD5.equals (valueMD5)) {
+                return;
+            }
+            System.out.println ("\n服务器MD5值:"+valueMD5 +"\n**与客户端相同**");
 
             //将计算结果发给客户端
             out.writeUTF (answer);

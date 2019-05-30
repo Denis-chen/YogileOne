@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ClientDH {
+public class ClientMD5 {
     public static void main(String args[]) {
         String cipherText, plainText, answer;
         Scanner reader = new Scanner (System.in);
@@ -26,11 +26,12 @@ public class ClientDH {
             plainText = MyBC.toSuffix (str);
             System.out.println ("后缀表达式明文:\n" + plainText);
 
-            //将后缀表达式明文通过AES加密，并将后缀表达式密文发往客户端
+            //将后缀表达式明文通过AES加密，并将后缀表达式密文发往服务器
             cipherText = AES.ecodes (plainText, AES_Key);
             System.out.println ("后缀表达式密文:\n" + cipherText + "\n");
             //out发送信息
             out.writeUTF (cipherText);
+
 
             //对AES算法的32字符密钥进行DH算法加密
             //生成客户端的密钥对
@@ -56,8 +57,15 @@ public class ClientDH {
             //客户端使用本地密钥对AES_Key进行消息加密，并发给服务器
             byte[] code1 = DH.encrypt (AES_Key.getBytes ( ), key1);
             System.out.println ("客户端使用本地密钥对AES_Key进行加密后的数据：" + Base64.encodeBase64String (code1));
-            //out发送信息，333333
+            //out发送信息
             out.writeUTF (Base64.encodeBase64String (code1));
+
+
+            //计算后缀表达式明文的MD5值，并发往服务器
+            String valueMD5 = MD5.numberMD5 (plainText);
+            System.out.println ("\n客户端计算的MD5值:" + valueMD5);
+            //out发送信息
+            out.writeUTF (valueMD5);
 
             //接受服务器的计算结果
             answer = in.readUTF ( );

@@ -4,7 +4,7 @@ import java.net.*;
 public class ServerAES {
     public static void main(String args[]) {
         String miwen, temp, answer;
-        MyDC mydc = new MyDC ();
+        MyDC mydc = new MyDC ( );
         ServerSocket serverForClient = null;
         Socket socketOnServer = null;
         DataOutputStream out = null;
@@ -24,12 +24,10 @@ public class ServerAES {
             miwen = in.readUTF ( );
             System.out.println ("服务器收到客户的密文:\n" + miwen);
             String key = "20175223yaomingyushidashuaibi111";
-            String mingwen = AES.dcodes(miwen, key);
-            temp = MyBC.toSuffix (mingwen);
-            System.out.println ("服务器将中缀表达式变形为后缀表达式:\n" +temp);
-            out.writeUTF (temp);
-            answer = String.valueOf(mydc.evaluate(temp));
+            String mingwen = AES.dcodes (miwen, key);
+            answer = String.valueOf (mydc.evaluate (mingwen));
             out.writeUTF (answer);
+            System.out.println ("\n**计算结果由客户端打印输出**");
             Thread.sleep (500);
         } catch (Exception e) {
             System.out.println ("客户已断开" + e);
