@@ -3,7 +3,7 @@ import java.net.*;
 
 public class Server {
     public static void main(String args[]) {
-        String question, temp="", answer;
+        String question, temp, answer;
         MyDC mydc = new MyDC ();
         ServerSocket serverForClient = null;
         Socket socketOnServer = null;
@@ -22,13 +22,13 @@ public class Server {
             in = new DataInputStream (socketOnServer.getInputStream ( ));
             // in读取信息，堵塞状态
             question = in.readUTF ( );
-            out.writeUTF("");
             System.out.println ("服务器收到客户的中缀表达式:\n" + question);
-
             temp = MyBC.toSuffix (question);
             System.out.println ("服务器将中缀表达式变形为后缀表达式:\n" +temp);
+            out.writeUTF (temp);
             answer = String.valueOf(mydc.evaluate(temp));
-            System.out.println("计算结果为："+answer);
+            System.out.println ("计算结果："+answer );
+            out.writeUTF (answer);
             Thread.sleep (500);
         } catch (Exception e) {
             System.out.println ("客户已断开" + e);
