@@ -1,0 +1,7 @@
+关于application与session的区别的疑问
+对于本项目，在deal_register.jsp中，
+application.setAttribute("userName",userName_dC); //userName_dC可现实
+但一旦通过表单传递到deal_success.jsp中，或 response.sendRedirect("deal_success.jsp");
+在deal_success.jsp中，取用显示为null
+
+但session不同，session有显示，不为空。

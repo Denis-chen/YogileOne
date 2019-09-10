@@ -1,0 +1,48 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: yaowei
+  Date: 2019/9/2
+  Time: 20:49
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<%
+    request.setCharacterEncoding("utf-8");
+    String userName_deal = request.getParameter("upload_UserName");
+    String userMsg_deal = request.getParameter("upload_UserMsg");
+    String message_add="["+userName_deal+"]说："+userMsg_deal+"<br>";	//组合留言信息
+    
+    int i;
+    int num = Integer.parseInt(session.getAttribute("number_person").toString());
+    out.println(num + "<br>!!!!!!!!!!<br>");
+    String[]  massage_old = (String[])session.getAttribute("message");
+
+    if (num >= 0) {
+        out.println(num + "<br>!!!!!!!!!!<br>");
+        String[] massage_new = new String[num+2];
+        for (i=0; i<Integer.parseInt(session.getAttribute("number_person").toString()); i++) {
+            massage_new[i] = massage_old[i];
+            out.println(massage_old[i] + "<br>");
+        }
+        massage_new[num] = userName_deal + " " + userMsg_deal;
+        out.println( massage_new[num] + "<br>????????<br>");
+        num++;
+        session.setAttribute("number_person",num);
+        session.setAttribute("massage",massage_new);
+    }
+%>
+<form action="index.jsp" id="text" name="text" method="post">
+    <span class="word_Msg">添加留言区域</span><br>
+    <input name="Submit" type="submit" value="提交留言">
+</form>
+
+<%
+    //response.sendRedirect("index.jsp");
+%>
+</body>
+</html>

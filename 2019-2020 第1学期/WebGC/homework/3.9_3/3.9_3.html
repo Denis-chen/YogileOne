@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时间倒计时</title>
+
+    <script language="JavaScript">
+        function timeToGoal(goalTimeForm,div_endTime) {
+            let gYear, gMonth, gDate, gHour, gMinute, gSecond;
+            gYear = goalTimeForm.goalYear.value;
+            gMonth = goalTimeForm.goalMonth.value;
+            gDate = goalTimeForm.goalDate.value;
+            gHour = goalTimeForm.goalHour.value;
+            gMinute = goalTimeForm.goalMinute.value;
+            gSecond = goalTimeForm.goalSecond.value;
+
+            let nowSysTime = new Date();
+            let sysYear = nowSysTime.getFullYear();
+            let sysMonth = nowSysTime.getMonth();
+            let sysDate = nowSysTime.getDate();
+            let sysHour = nowSysTime.getHours();
+            let sysMinute = nowSysTime.getMinutes();
+            let sysSecond = nowSysTime.getSeconds();
+            /**
+             * Date.getMonth();所获得的月份需加1，才能等于正确的月份
+             */
+            sysMonth = sysMonth + 1;
+            /**
+             * 判断是否为未来时间
+             */
+            if(gYear < sysYear) {
+                alert("goalYear:"+gYear+"\nsysYear:"+sysYear);
+                alert("目标时间处于过去，无法指定为未来目标时间");
+                goalTimeForm.goalYear.focus();
+                return -1;
+            }
+            else {
+                if(gMonth < sysMonth) {
+                    alert("goalMonth:"+gMonth+"\nsysMonth:"+sysMonth);
+                    alert("目标时间处于过去，无法指定为未来目标时间");
+                    goalTimeForm.goalYear.focus();
+                    return -1;
+                }
+                else {
+                    if(gDate < sysDate) {
+                        alert("goalDate:"+gDate+"\nsysYear:"+sysDate);
+                        alert("目标时间处于过去，无法指定为未来目标时间");
+                        goalTimeForm.goalYear.focus();
+                        return -1;
+                    }
+                    else {
+                        if(gHour < sysHour) {
+                            alert("goalHour:"+gHour+"\nsysHour:"+sysHour);
+                            alert("目标时间处于过去，无法指定为未来目标时间");
+                            goalTimeForm.goalYear.focus();
+                            return -1;
+                        }
+                        else {
+                            if(gMinute - sysMinute < 1) {
+                                alert("goalMinute:"+gMinute+"\nsysMinute:"+sysMinute);
+                                alert("目标时间分钟要提前至少1分钟，否则无法指定为未来目标时间");
+                                goalTimeForm.goalYear.focus();
+                                return -1;
+                            }
+                            else {
+                                ;
+                            }
+                        }
+                    }
+                }
+            }
+            //alert("goalYear:"+gYear+"\nsysYear:"+sysYear);
+            /**
+             * 判断输入时间各项是否符合各项所属时间规范
+             */
+            if(isNaN(gYear)===true || isNaN(gMonth)===true || isNaN(gDate)===true
+                || isNaN(gHour)===true || isNaN(gMinute)===true || isNaN(gSecond)===true) {
+                alert("请检查输入目标时间格式是否规范");
+                alert("gYear:"+gYear+"\ngMonth:"+gMonth+"\ngDate:"+gDate+"\ngHour:"
+                    +gHour+"\ngMinute:"+gMinute+"\ngSecond:"+gSecond);
+                goalTimeForm.goalSecond.focus();
+                return -1;
+            }
+            if((parseInt(gMonth)<1 || parseInt(gMonth)>12) || (parseInt(gHour)<0 || parseInt(gHour)>23)
+                || (parseInt(gMinute)<0 || parseInt(gMinute)>59) || (parseInt(gSecond)<0 || parseInt(gSecond)>59)) {
+                alert("请检查输入目标时间范围是否规范");
+                alert("gYear:"+gYear+"\ngMonth:"+gMonth+"\ngDate:"+gDate+"\ngHour:"
+                    +gHour+"\ngMinute:"+gMinute+"\ngSecond:"+gSecond);
+                goalTimeForm.goalSecond.focus();
+                return -1;
+            }
+            if( checkTime_YMD(goalTimeForm) !== 1) {
+                alert("请检查输入年/月/日格式是否规范\n以及该年二月是否为闰年.");
+                alert("gYear:"+gYear+"\ngMonth:"+gMonth+"\ngDate:"+gDate+"\ngHour:"
+                    +gHour+"\ngMinute:"+gMinute+"\ngSecond:"+gSecond);
+                goalTimeForm.goalSecond.focus();
+                return -1;
+            }
+            //alert("gYear:"+gYear+"\ngMonth:"+gMonth+"\ngDate:"+gDate+"\ngHour:" +gHour+"\ngMinute:"+gMinute+"\ngSecond:"+gSecond);
+
+
+            subToTime(goalTimeForm,div_endTime);
+
+        }
+        /*
+        window.onload=function(){
+            window.setInterval("timeToGoal(goalTimeForm)",1000);	//实时获取并显示系统时间
+        }
+        */
+    </script>
+
+    <!-- 年月日判断 -->
+    <script language="JavaScript">
+        function checkTime_YMD(goalTimeForm) {
+            const bigMonth=[1,3,5,7,8,10,12];
+            let strYear, strMonth, strDay;
+            let i;
+
+            strYear = goalTimeForm.goalYear.value;
+            strMonth = goalTimeForm.goalMonth.value;
+            strDay = goalTimeForm.goalDate.value;
+            //alert("strYear:"+strYear+"\nstrMonth:"+strMonth+"\nstrDay:"+strDay);
+            //判断除2月的大小月
+            for(i=0;i<bigMonth.length;i++) {
+                if(parseInt(strMonth) === bigMonth[i]) {
+                    if(strDay<1 || strDay>31) {
+                        //alert("strYear:"+strYear+"\nstrMonth:"+strMonth+"\nstrDay:"+strDay);
+                        return -1;
+                    }
+                    break;
+                }
+                else if(parseInt(strMonth) !== 2) {
+                    if(strDay<1 || strDay>30) {
+                        //alert("strYear:"+strYear+"\nstrMonth:"+strMonth+"\nstrDay:"+strDay);
+                        return -1;
+                    }
+                }
+            }
+
+            /**
+             * 判断闰年
+             */
+            if((strYear % 4 === 0 && strYear % 100 !== 0) || strYear % 400 ===0) {
+                if(parseInt(strMonth) === 2) {
+                    if(strDay<1 || strDay>29) {
+                        return -1;
+                    }
+                }
+                //alert("是闰年。");
+            }
+            else {
+                if(parseInt(strMonth) === 2) {
+                    if(strDay<1 || strDay>28) {
+                        return -1;
+                    }
+                }
+                //alert("不是闰年。");
+            }
+            return 1;
+        }
+    </script>
+
+    <!-- 倒计时时间计算 -->
+    <script language="JavaScript">
+        function subToTime(goalTimeForm,div_endTime) {
+            const dayOfYear=365;
+            const bigMonth=[1,3,5,7,8,10,12];
+            let gYear, gMonth, gDate, gHour, gMinute, gSecond;
+            gYear = goalTimeForm.goalYear.value;
+            gMonth = goalTimeForm.goalMonth.value;
+            gDate = goalTimeForm.goalDate.value;
+            gHour = goalTimeForm.goalHour.value;
+            gMinute = goalTimeForm.goalMinute.value;
+            gSecond = goalTimeForm.goalSecond.value;
+
+            let nowSysTime = new Date();
+            let sysYear = nowSysTime.getFullYear();
+            let sysMonth = nowSysTime.getMonth();
+            let sysDate = nowSysTime.getDate();
+            let sysHour = nowSysTime.getHours();
+            let sysMinute = nowSysTime.getMinutes();
+            let sysSecond = nowSysTime.getSeconds();
+            sysMonth++;
+            sysMinute++;
+
+            let subYear,subMonth,subDate,subHour,subMinute,subSecond;
+            subYear = gYear - sysYear;
+            subMonth = gMonth - sysMonth;
+            subDate = gDate - sysDate;
+            subHour = gHour - sysHour;
+            subMinute = gMinute - sysMinute;
+            subSecond = gSecond - sysSecond;
+
+            if((gSecond-sysSecond) < 0) {
+                subSecond = 60 + subSecond;
+            }
+            if((gMinute-sysMinute) < 0) {
+                subMinute = 60 + subMinute;
+            }
+            if((gHour-sysHour) < 0) {
+                subHour = 24 + subHour;
+            }
+            if((gDate-sysDate) < 0) {
+                for(let i=0;i<bigMonth.length;i++) {
+                    if(sysMonth === bigMonth[i]) {
+                        subDate = 31 + subDate;
+                        break;
+                    }
+                }
+                if(sysMonth !== 2) {
+                    subDate = 30 + subDate;
+                }
+                if(sysMonth === 2) {
+                    if((sysYear % 4 === 0 && sysYear % 100 !== 0) || sysYear % 400 ===0) {
+                        subDate = 29 + subDate;
+                    }
+                    else{
+                        subDate = 28 + subDate;
+                    }
+                }
+            }
+            if((gMonth-sysMonth) < 0) {
+                subMonth = 12 + subMonth;
+            }
+            let endToTime = subYear+"年"+subMonth+"月"+subDate+"日"+subHour+"小时"+subMinute+"分钟"+subSecond+"秒";
+            div_endTime.innerHTML="当前时间："+endToTime;	//显示系统时间
+        }
+        window.onload=function(){
+            window.setInterval("subToTime(goalTimeForm,div_endTime)",1000);	//实时获取并显示系统时间
+        }
+    </script>
+</head>
+<body>
+    <form action="" name="goalTimeForm" method="post" id="enterGoalTime">
+        输入目标年份：<input name="goalYear" type="text" id="goalYear" title="年份"><br>
+        输入目标月份：<input name="goalMonth" type="text" id="goalMonth" title="月份"><br>
+        输入目标日期：<input name="goalDate" type="text" id="goalDate" title="日期"><br>
+        输入目标小时：<input name="goalHour" type="text" id="goalHour" title="小时"><br>
+        输入目标分钟：<input name="goalMinute" type="text" id="goalMinute" title="分钟"><br>
+        输入目标秒种：<input name="goalSecond" type="text" id="goalSecond" title="秒钟"><br>
+        <input name="Button" type="button" onclick="timeToGoal(goalTimeForm)" value="提交表单">
+    </form>
+
+    <div id="div_endTime"></div>
+</body>
+</html>
