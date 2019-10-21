@@ -109,51 +109,7 @@ int Count_ab_noline(int aIn, int bIn) {
     return count;
 }
 
-/**
-  * 输出真值表
-  */
-void truly_list() {
-    int i,j;
-    int num_shang=0, num_yu=0;
-    int num_two_x[4]={0}, num_two_y[4]={0};
-    int result_form_x[16][4]={{0},{0},{0}};
-    int result_form_y[16][4]={{0},{0},{0}};
-    
-    // 列真值表左x
-    for (i=0; i<16; i++) {
-        num_shang = SBoxIn[i];
-        // num_two[0] 代表最低项00
-        for (j=0; j<4 && num_shang != 0; j++) {
-            num_yu = num_shang%2;
-            num_shang = num_shang/2;
-            result_form_x[i][j] = num_yu;
-        }
-    }
-    
-    // 列真值表右y
-    num_shang=0;
-    num_yu=0;
-    for (i=0; i<16; i++) {
-        num_shang = SBoxOut[i];
-        // num_two[0] 代表最低项00
-        for (j=0; j<4 && num_shang != 0; j++) {
-            num_yu = num_shang%2;
-            num_shang = num_shang/2;
-            result_form_y[i][j] = num_yu;
-        }
-    }
-    
-    for (i=0; i<16; i++) {
-        for (j=3; j>=0; j--) {
-            printf("%d ", result_form_x[i][j]);
-        }
-        printf("\t");
-        for (j=3; j>=0; j--) {
-            printf("%d ", result_form_y[i][j]);
-        }
-        printf("\n");
-    }
-}
+
 
 
 /**
@@ -214,8 +170,6 @@ int main()
             printf(" %d\t",S_ab_noline[i][j]);
         }
     }
-    printf("\n\n");
-    
-    truly_list();
+    printf("\n");
     return 0;
 }
