@@ -143,6 +143,9 @@ void truly_list() {
         }
     }
     
+    
+    printf("真值表\n   x\t\t   y\n3 2 1 0\t\t3 2 1 0\n\n-----------------------\n");
+    
     for (i=0; i<16; i++) {
         for (j=3; j>=0; j--) {
             printf("%d ", result_form_x[i][j]);
