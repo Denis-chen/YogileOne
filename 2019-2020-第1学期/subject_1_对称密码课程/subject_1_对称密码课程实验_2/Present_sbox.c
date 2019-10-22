@@ -144,7 +144,7 @@ void truly_list() {
     }
     
     
-    printf("真值表\n   x\t\t   y\n3 2 1 0\t\t3 2 1 0\n\n-----------------------\n");
+    printf("\n\n真值表\n   x\t\t   y\n3 2 1 0\t\t3 2 1 0\n\n-----------------------\n");
     
     for (i=0; i<16; i++) {
         for (j=3; j>=0; j--) {
@@ -156,7 +156,22 @@ void truly_list() {
         }
         printf("\n");
     }
+    
 }
+
+/**
+  * 输出代数正规型
+  */
+void Bool_falmol_from() {
+    printf("\n\n代数次数 和 代数项数(当前结果为Present算法的手算答应输出，更换S盒不会改变输出)\n\n");
+    
+    printf("\n\n y0代数次数：2，代数项数：4 \n\t y0 = x0 + x2 + x1*x2 + x3");
+    printf("\n\n y1代数次数：3，代数项数：7 \n\t y1 = x1 + x0*x1*x2 + x3 + x1*x3 + x0*x1*x3 + x2*x3 + x0*x2*x3");
+    printf("\n\n y2代数次数：3，代数项数：7 \n\t y2 = 1 + x0*x1 + x2 + x3 + x0*x3 + x1*x3 + x0*x1*x3 + x0*x2*x3");
+    printf("\n\n y3代数次数：3，代数项数：7 \n\t y3 = 1 + x0 + x1 + x1*x2 + x0*x1*x2 + x3 + x0*x1*x3 + x0*x2*x3\n");
+    
+}
+
 
 
 /**
@@ -219,6 +234,8 @@ int main()
     }
     printf("\n\n");
     
+    Bool_falmol_from();
     truly_list();
+   
     return 0;
 }
